@@ -1,6 +1,6 @@
 import uuid
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import String, UUID as SQLUUID
+from sqlalchemy import String, Boolean,UUID as SQLUUID
 class Base(DeclarativeBase):
     pass
 
@@ -9,8 +9,10 @@ class User(Base):
     id: Mapped[uuid.UUID] = mapped_column(
         SQLUUID(as_uuid=True), primary_key=True,default=uuid.uuid4, index=True)
     username: Mapped[str] = mapped_column(String(18), nullable=False)
-    email: Mapped[str] = mapped_column(String, nullable=False) #смогу контролировать формат pydantic-ом
+    email: Mapped[str] = mapped_column(String, nullable=False)
     hashed_password: Mapped[str] = mapped_column(String, nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    is_verified: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
 
 

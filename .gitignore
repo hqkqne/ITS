@@ -3,7 +3,6 @@
 .idea
 __pycache__
 .vscode
-.idea
 .env.docker
 ors-data/
 app/ors-data/
